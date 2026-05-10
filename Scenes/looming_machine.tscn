@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cd5axc5qn2e3m"]
+
+[ext_resource type="Script" uid="uid://cnlwl7cr8somd" path="res://Scripts/looming_machine.gd" id="1_34evt"]
+[ext_resource type="Texture2D" uid="uid://2fg50nfcci8p" path="res://Assets/Looming Machine.png" id="1_lj658"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34evt"]
+atlas = ExtResource("1_lj658")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcl5k"]
+atlas = ExtResource("1_lj658")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_du0xu"]
+atlas = ExtResource("1_lj658")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c13hj"]
+atlas = ExtResource("1_lj658")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bjfrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34evt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcl5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_du0xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c13hj")
+}],
+"loop": true,
+"name": &"LoomingMachineAction",
+"speed": 12.0
+}]
+
+[node name="LoomingMachine" type="Node2D" unique_id=1232031584]
+script = ExtResource("1_34evt")
+
+[node name="LoomingMachineAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1542377407]
+sprite_frames = SubResource("SpriteFrames_bjfrl")
+animation = &"LoomingMachineAction"
+frame_progress = 0.12316237

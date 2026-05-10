@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cg2dmljqf2mun"]
+
+[ext_resource type="Texture2D" uid="uid://x0sp2bvquekq" path="res://Assets/Farm.svg" id="1_ampd1"]
+
+[node name="CloudFarm" type="Node2D" unique_id=613506707]
+
+[node name="CloudFarmSprite" type="Sprite2D" parent="." unique_id=1570959609]
+texture = ExtResource("1_ampd1")
