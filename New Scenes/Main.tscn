@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://tqejejdl1y6r"]
+
+[ext_resource type="PackedScene" uid="uid://lyem4vartkbo" path="res://New Scenes/Atelier.tscn" id="2_tfjgg"]
+[ext_resource type="PackedScene" uid="uid://bwsubx66a7c1" path="res://New Scenes/Shop.tscn" id="3_xn6fc"]
+
+[node name="Main" type="Node2D" unique_id=347947293]
+
+[node name="Atelier" parent="." unique_id=514307889 instance=ExtResource("2_tfjgg")]
+position = Vector2(66, 235)
+
+[node name="Shop" parent="." unique_id=533507977 instance=ExtResource("3_xn6fc")]

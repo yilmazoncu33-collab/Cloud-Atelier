@@ -11,12 +11,7 @@ config_version=5
 [application]
 
 config/name="Cloud Atelier"
-run/main_scene="res://Scenes/cloud_farmer_cat.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-
-[autoload]
-
-GameData="*uid://duulot7gvnm6l"
 
 [physics]
 

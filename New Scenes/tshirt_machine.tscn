@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dupjbv6wq7ete"]
+
+[ext_resource type="Script" uid="uid://dq8kgkki8js4y" path="res://New Scripts/tshirt_machine.gd" id="1_s2quv"]
+[ext_resource type="Texture2D" uid="uid://dtrypnrw5gwu0" path="res://Assets/Looming Machine2.png" id="2_g3751"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at8np"]
+atlas = ExtResource("2_g3751")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0mh0"]
+atlas = ExtResource("2_g3751")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb60e"]
+atlas = ExtResource("2_g3751")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnspm"]
+atlas = ExtResource("2_g3751")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2odm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at8np")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0mh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb60e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnspm")
+}],
+"loop": true,
+"name": &"Work",
+"speed": 4.0
+}]
+
+[node name="TshirtMachine" type="Node2D" unique_id=184055388]
+script = ExtResource("1_s2quv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1738013041]
+sprite_frames = SubResource("SpriteFrames_2odm3")
+animation = &"Work"
+frame_progress = 0.17022981
+
+[node name="Timer" type="Timer" parent="." unique_id=2043420218]
+wait_time = 5.0
+one_shot = true

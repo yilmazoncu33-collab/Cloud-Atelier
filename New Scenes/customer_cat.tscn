@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cj1ssjjby86de"]
+
+[ext_resource type="Texture2D" uid="uid://clwjavxd127ek" path="res://Assets/Cat Sprite Sheet.png" id="1_3w03r"]
+[ext_resource type="Script" uid="uid://pj3tfloteuoa" path="res://New Scripts/customer_cat.gd" id="1_3x5v1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x5v1"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yhrk"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5ve2"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvfdv"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6bg6"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oly83"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pgd0"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x0f0"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6bbs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x5v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yhrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5ve2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvfdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6bg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oly83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pgd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x0f0")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 8.0
+}]
+
+[node name="CustomerCat" type="Node2D" unique_id=490946937]
+script = ExtResource("1_3x5v1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1608927470]
+scale = Vector2(9.949495, 10)
+sprite_frames = SubResource("SpriteFrames_y6bbs")
+animation = &"Walk"
+frame_progress = 0.07160471
