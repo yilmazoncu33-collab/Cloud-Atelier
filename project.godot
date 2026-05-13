@@ -13,6 +13,10 @@ config_version=5
 config/name="Cloud Atelier"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+GameData="*uid://c8atcw73js40r"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -21,5 +25,4 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"

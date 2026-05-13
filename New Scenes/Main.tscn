@@ -1,11 +1,32 @@
 [gd_scene format=3 uid="uid://tqejejdl1y6r"]
 
 [ext_resource type="PackedScene" uid="uid://lyem4vartkbo" path="res://New Scenes/Atelier.tscn" id="2_tfjgg"]
+[ext_resource type="PackedScene" uid="uid://c6a0fa8w002ih" path="res://New Scenes/BoostButton.tscn" id="3_hlu6j"]
 [ext_resource type="PackedScene" uid="uid://bwsubx66a7c1" path="res://New Scenes/Shop.tscn" id="3_xn6fc"]
+[ext_resource type="PackedScene" uid="uid://dupjbv6wq7ete" path="res://New Scenes/tshirt_machine.tscn" id="4_tfjgg"]
+[ext_resource type="PackedScene" uid="uid://b61rodmp0kdkr" path="res://New Scenes/Buttons.tscn" id="5_xn6fc"]
 
 [node name="Main" type="Node2D" unique_id=347947293]
 
 [node name="Atelier" parent="." unique_id=514307889 instance=ExtResource("2_tfjgg")]
-position = Vector2(66, 235)
+position = Vector2(323, 394)
 
 [node name="Shop" parent="." unique_id=533507977 instance=ExtResource("3_xn6fc")]
+
+[node name="CanvasLayer" parent="." unique_id=1578972447 instance=ExtResource("3_hlu6j")]
+offset = Vector2(500, 0)
+transform = Transform2D(10, 0, 0, 10, 500, 0)
+
+[node name="TshirtMachine" parent="." unique_id=184055388 instance=ExtResource("4_tfjgg")]
+position = Vector2(1277, 108.99999)
+
+[node name="TshirtMachine2" parent="." unique_id=314454786 instance=ExtResource("4_tfjgg")]
+position = Vector2(1272, 290)
+
+[node name="TshirtMachine3" parent="." unique_id=1007500050 instance=ExtResource("4_tfjgg")]
+position = Vector2(1277, 477.99997)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=419957132]
+offset = Vector2(576, 324)
+
+[node name="CanvasLayer2" parent="." unique_id=956914418 instance=ExtResource("5_xn6fc")]

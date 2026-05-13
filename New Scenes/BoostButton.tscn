@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c6a0fa8w002ih"]
+
+[ext_resource type="Script" uid="uid://q7rvbjvm2rgd" path="res://New Scripts/BoostUI.gd" id="1_rsggm"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1578972447]
+scale = Vector2(10, 10)
+transform = Transform2D(10, 0, 0, 10, 0, 0)
+script = ExtResource("1_rsggm")
+
+[node name="Button" type="Button" parent="." unique_id=2017667201]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Button" unique_id=1168287297]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

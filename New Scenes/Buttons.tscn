@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b61rodmp0kdkr"]
+
+[ext_resource type="Script" uid="uid://cq0wcxdloro2e" path="res://New Scripts/Buttons.gd" id="1_bjgk6"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=956914418]
+script = ExtResource("1_bjgk6")
+
+[node name="Button" type="Button" parent="." unique_id=1140413745]
+offset_left = 37.0
+offset_top = 148.00002
+offset_right = 55.0
+offset_bottom = 179.00002
+scale = Vector2(10, 10)
+text = "<"
+
+[node name="Button2" type="Button" parent="." unique_id=1858254885]
+offset_left = 946.0001
+offset_top = 171.00002
+offset_right = 964.0001
+offset_bottom = 202.00002
+scale = Vector2(10, 10)
+text = ">"
+
+[connection signal="pressed" from="Button" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_right_button_pressed"]

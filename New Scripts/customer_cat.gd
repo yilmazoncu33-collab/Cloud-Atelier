@@ -1,5 +1,7 @@
 extends Node2D
-signal arrived
+
+signal arrived(cat_ptr)
+
 var target_position = Vector2(500, 300)
 var start_position = Vector2(-50, 300)
 var move_duration = 4.0
@@ -22,7 +24,7 @@ func walk_to(target: Vector2, is_returning: bool = false):
 		if is_returning:
 			queue_free() # Geri geldiyse kendini yok et (RAM'i şişirme)
 		else:
-			arrived.emit() # Hedefe vardıysa sinyal çak
+			arrived.emit(self) # Hedefe vardıysa sinyal çak
 	)
 
 # Shop bu fonksiyonu çağıracak

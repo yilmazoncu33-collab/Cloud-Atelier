@@ -40,6 +40,7 @@ animations = [{
 }]
 
 [node name="TshirtMachine" type="Node2D" unique_id=184055388]
+scale = Vector2(5, 5)
 script = ExtResource("1_s2quv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1738013041]
