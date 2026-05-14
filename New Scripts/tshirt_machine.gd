@@ -7,16 +7,28 @@ var current_cat = null
 @onready var timer = $Timer
 
 func _ready() -> void:
-	timer.timeout.connect(_on_timeout)
-	# Ortak zili dinle: "Yeni kedi geldiğinde sırayı kontrol et"
-	GameData.new_cat_arrived.connect(check_queue)
-	# Oyun başında bekleyen kedi varsa diye bir kez kontrol et
+	$Timer.wait_time = 5.0
+	$Timer.one_shot = true # Tek sefer çalışsın
+	# KABLOYU KODLA BAĞLIYORUZ (Garanti yol)
+	if !$Timer.timeout.is_connected(_on_timeout):
+		$Timer.timeout.connect(_on_timeout)
+	
+	GameData.new_cat_ready.connect(check_queue)
+	# Oyun başında kedi varsa hemen kontrol et
 	check_queue()
 	
 func check_queue():
-	# Eğer boşta isem VE sırada bekleyen kedi varsa
+	# Makine boşsa VE sırada kedi varsa başla
 	if !is_working and GameData.waiting_cats.size() > 0:
-		start_machine()
+		is_working = true
+		current_cat = GameData.waiting_cats.pop_front()
+		
+		# Hata testi için print koyalım
+		print("Makine kedi aldi. Kalan sira: ", GameData.waiting_cats.size())
+		
+		$AnimatedSprite2D.play("Work")
+		$Timer.start()
+		GameData.print_status_report()
 
 func start_machine():
 	is_working = true
@@ -31,13 +43,23 @@ func start_machine():
 	timer.start()
 
 func _on_timeout():
-	anim_sprite.stop()
-	is_working = false
-	GameData.total_coins += 10
-	print("Total coins:", GameData.total_coins)
-	if current_cat != null:
+	print("5 saniye bitti, kedi gonderiliyor.")
+	$AnimatedSprite2D.stop()
+	if current_cat:
 		current_cat.return_to_start()
 		current_cat = null
 	
-	# İş bitti, sırada bekleyen başka kedi var mı bak
+	is_working = false # BURASI ÇOK ÖNEMLİ!
+	GameData.total_coins += 10
+	GameData.print_status_report()
+	
+	# BEKLEME YAPMA DEVAM ET: Sırada bekleyen 9 kedi varsa hemen birini al
 	check_queue()
+
+func get_active_machine_count() -> int:
+	var count = 0
+	# Ana sahnedeki (Main) tüm makineleri kontrol et
+	for node in get_tree().get_nodes_in_group("machines"):
+		if node.is_working:
+			count += 1
+	return count

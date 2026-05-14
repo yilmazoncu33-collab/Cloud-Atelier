@@ -1,32 +1,60 @@
 extends Node2D
 
-signal arrived(cat_ptr)
+signal arrived(cat_ref)
+var target_booth = null # Kedinin gideceği kabin
 
-var target_position = Vector2(500, 300)
-var start_position = Vector2(-50, 300)
-var move_duration = 4.0
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	walk_to(target_position)
+func _ready():
+	# İlk geldiğinde bir bak bakalım yer var mı
+	var found = find_free_booth()
+	
+	# Eğer yer bulamadıysan, kabin boşalana kadar pusuda bekle
+	if not found:
+		GameData.booth_freed.connect(find_free_booth)
+	
 
-# Yürüme işini genel bir fonksiyona çevirdik ki geri dönerken de kullanalım
-func walk_to(target: Vector2, is_returning: bool = false):
+func find_free_booth():
+	for booth in GameData.trial_booths:
+		if !booth.is_occupied:
+			target_booth = booth
+			booth.is_occupied = true 
+			# Eğer bekleyenler listesindeysek artık oradan çıkabiliriz (sinyal bağlantısını kes)
+			if GameData.booth_freed.is_connected(find_free_booth):
+				GameData.booth_freed.disconnect(find_free_booth)
+			walk_to(target_booth.global_position)
+			return true
+	return false
+	# Kabin bulamayan kediyi burada görüyoruz:
+	print("KRİTİK: Kabinler dolu, kedi kapıda kaldı!")
+	GameData.print_status_report()
+
+func walk_to(target: Vector2):
 	$AnimatedSprite2D.play("Walk")
-	
-	# Eğer geri dönüyorsa sprite'ı ters çevir (sola baksın)
-	$AnimatedSprite2D.flip_h = is_returning
-	
 	var tween = create_tween()
-	tween.tween_property(self, "position", target, move_duration)
-	
+	tween.tween_property(self, "global_position", target, 4.0)
 	tween.finished.connect(func():
 		$AnimatedSprite2D.stop()
-		if is_returning:
-			queue_free() # Geri geldiyse kendini yok et (RAM'i şişirme)
-		else:
-			arrived.emit(self) # Hedefe vardıysa sinyal çak
+		arrived.emit(self) # Sadece bu yetsin, alttakini sil
 	)
-
-# Shop bu fonksiyonu çağıracak
+	
 func return_to_start():
-	walk_to(start_position, true)
+	if target_booth: 
+		target_booth.is_occupied = false
+		target_booth.current_customer = null
+		GameData.booth_freed.emit()
+	$AnimatedSprite2D.play("Walk")
+	$AnimatedSprite2D.flip_h = true
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", Vector2(-100, 300), 4.0)
+	tween.finished.connect(queue_free)
+
+func walk_to_exit(target: Vector2):
+	$AnimatedSprite2D.play("Walk")
+	$AnimatedSprite2D.flip_h = true # Geri dönerken sola baksın
+	
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", target, 4.0)
+	
+	# Ekran dışına çıkınca kediyi tamamen yok et (RAM şişmesin)
+	tween.finished.connect(func():
+		queue_free()
+	)

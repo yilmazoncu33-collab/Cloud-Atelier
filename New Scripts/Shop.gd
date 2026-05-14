@@ -20,14 +20,20 @@ func spawn_timer():
 
 func create_customercat():
 	var cat = customercat_scene.instantiate()
-	cat.position = Vector2(-50, 300) 
 	add_child(cat)
 	
-	# Kedi vardığında çalışacak fonksiyonu bağlıyoruz
+	# HATA BURADAYDI: Başına 'GameData.' eklemezsen tanımaz.
+	GameData.incoming_cats.append(cat) 
+	
 	cat.arrived.connect(_on_cat_arrived)
+	GameData.print_status_report()
 
 func _on_cat_arrived(cat_ref):
-	# Kediyi ortak listeye ekle ve zili çal
+	# Burada da başına 'GameData.' ekle:
+	if cat_ref in GameData.incoming_cats:
+		GameData.incoming_cats.erase(cat_ref)
+	
 	GameData.waiting_cats.append(cat_ref)
-	GameData.new_cat_arrived.emit()
+	GameData.new_cat_ready.emit()
+	GameData.print_status_report()
 	

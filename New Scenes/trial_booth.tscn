@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://sa5nhlvf6ivh"]
+
+[ext_resource type="Script" uid="uid://b1f83ytx6t7iw" path="res://New Scripts/trial_booth.gd" id="1_23f8q"]
+[ext_resource type="Texture2D" uid="uid://be1f40tr6a7ef" path="res://Assets/TrialBooth.svg" id="2_02cer"]
+
+[node name="TrialBooth" type="Node2D" unique_id=1110644329]
+script = ExtResource("1_23f8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=948922177]
+texture = ExtResource("2_02cer")

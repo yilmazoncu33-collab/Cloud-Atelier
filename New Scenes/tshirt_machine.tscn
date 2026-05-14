@@ -49,5 +49,7 @@ animation = &"Work"
 frame_progress = 0.17022981
 
 [node name="Timer" type="Timer" parent="." unique_id=2043420218]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
