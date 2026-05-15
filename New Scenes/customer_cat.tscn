@@ -3,6 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://clwjavxd127ek" path="res://Assets/Cat Sprite Sheet.png" id="1_3w03r"]
 [ext_resource type="Script" uid="uid://pj3tfloteuoa" path="res://New Scripts/customer_cat.gd" id="1_3x5v1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6bbs"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0fj2"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu1jh"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l86og"]
+atlas = ExtResource("1_3w03r")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3x5v1"]
 atlas = ExtResource("1_3w03r")
 region = Rect2(0, 160, 32, 32)
@@ -39,6 +55,23 @@ region = Rect2(224, 160, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_y6bbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0fj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu1jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l86og")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3x5v1")
 }, {
 "duration": 1.0,
@@ -73,5 +106,4 @@ script = ExtResource("1_3x5v1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1608927470]
 scale = Vector2(9.949495, 10)
 sprite_frames = SubResource("SpriteFrames_y6bbs")
-animation = &"Walk"
-frame_progress = 0.07160471
+animation = &"Idle"

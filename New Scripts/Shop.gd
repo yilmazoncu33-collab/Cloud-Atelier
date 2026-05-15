@@ -7,24 +7,33 @@ func _ready() -> void:
 	spawn_timer()
 
 func spawn_multiple_cats():
-	for i in range(randi_range(2,3)):
-		create_customercat()
-		# Kediler üst üste binmesin diye çok küçük bir bekleme (opsiyonel)
-		await get_tree().create_timer(0.2).timeout
+	var requested_cats = randi_range(2, 3) # Boost ile gelen kedi isteği
+	
+	for i in range(requested_cats):
+		if GameData.get_total_cat_count() < GameData.get_max_capacity():
+			create_customercat()
+			# Kediler üst üste binmesin diye kısa bekleme
+			await get_tree().create_timer(0.2).timeout
+		else:
+			print("KAPASİTE DOLU: Boost daha fazla kedi sokamıyor! (Max: ", GameData.get_max_capacity(), ")")
+			break # Dükkan doldu, döngüden çık
 
 func spawn_timer():
-	# Burası artık hep standart hızda (5-10 saniye) çalışacak
 	await get_tree().create_timer(randf_range(5.0, 10.0)).timeout
-	create_customercat()
-	spawn_timer() # Döngü devam etsin
+	
+	# Normal akışta da kapasiteyi kontrol et
+	if GameData.get_total_cat_count() < GameData.get_max_capacity():
+		create_customercat()
+	else:
+		print("DÜKKAN DOLU: Yeni kedi kapıdan döndü.")
+	
+	spawn_timer()
 
 func create_customercat():
+	# Burada artık ekstra kontrol yapmaya gerek yok, çağıran yerler kontrol ediyor
 	var cat = customercat_scene.instantiate()
 	add_child(cat)
-	
-	# HATA BURADAYDI: Başına 'GameData.' eklemezsen tanımaz.
-	GameData.incoming_cats.append(cat) 
-	
+	GameData.incoming_cats.append(cat)
 	cat.arrived.connect(_on_cat_arrived)
 	GameData.print_status_report()
 
